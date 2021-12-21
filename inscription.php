@@ -1,49 +1,36 @@
 <?php
-try {
-    include_once('classes/db_register.php');
-    $obj = new Register();
-    if (isset($_POST['login'])) {
 
-        $login = $_POST['login'];
-        $password = $_POST['password'];
-        $user = $obj->Login($login, $password);
+include_once('classes/db_register.php');
+$obj = new Register();
+if (isset($_POST['envoi'])) {
 
-        if ($user) {        
+    $login = $_POST['login'];
+    $password = $_POST['password'];
+    $conf_password = $_POST['conf_password'];
+    $user = $obj->Login_exist($login);
 
-        if ($_POST['envoi']) {
-            $login = $_POST['login'];
-            $password = $_POST['password'];
-            $conf_password = $_POST['conf_password'];
+    if (!$user) {
+        var_dump($user);    
+        if ($password == $conf_password) {
 
-            if ($password == $conf_password) {
-                $login = $obj->UserExist($login);
-                if (!$login) {
-                    $register = $obj->UserRegister($login, $password);
-                    if ($register) {
-                        echo "Inscription reussis";
-                    } else {
-                        echo "Inscription échoué";
-                    }
-                } else {
-                    echo "login déjà pris";
-                }
+            $register = $obj->UserRegister($login, $password);
+            if ($register) {
+                echo "Inscription reussis";
             } else {
-                echo "password correspond pas";
+                echo "Inscription échoué";
             }
+        } else {
+            echo "password correspond pas";
         }
+    } else {
+        $msg = 'Login déjà pris';
+        echo $msg;
     }
 } else {
-    echo "echec";
+    //echo "echec";
 }
-} catch (PDOException $e) {
 
-    echo 'echec : ' . $e->getMessage();
-}
 ?>
-
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -59,9 +46,9 @@ try {
 
     <div class="form_inscription">
         <form action="" method="post">
-            <input type="text" name="login" value="login"><br /><br />
-            <input type="password" name="password" value="password"><br /><br />
-            <input type="password" name="conf_password" value="password"><br /><br />
+            <input type="text" name="login" placeholder="login"><br /><br />
+            <input type="password" name="password" placeholder="password"><br /><br />
+            <input type="password" name="conf_password" placeholder="password"><br /><br />
             <input type="submit" name="envoi">
         </form>
     </div>
