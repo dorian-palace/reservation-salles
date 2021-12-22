@@ -9,7 +9,6 @@ class Dblog
             if (!$bdd) {
                 die("Connexion a la bdd impossible");
             }
-            var_dump($bdd);
             return $bdd;
         } catch (PDOException $e) {
 
