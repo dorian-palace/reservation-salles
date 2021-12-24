@@ -1,4 +1,4 @@
-Â<?php
+<?php
 
 include_once('classes/db_register.php'); //j'appel ma class pour l'inscription
 $obj = new Register(); //Création objet
