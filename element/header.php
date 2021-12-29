@@ -1,43 +1,48 @@
-<header>
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-white">
-    <div class="container-fluid">
-      <button
-              class="navbar-toggler"
-              type="button"
-              data-mdb-toggle="collapse"
-              data-mdb-target="#navbarExample01"
-              aria-controls="navbarExample01"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-      >
-        <i class="fas fa-bars"></i>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarExample01">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item active">
-            <a class="nav-link" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Features</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Pricing</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
-          </li>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <header>
+<ul class="ul_log">
+  <li ><a href="connexion.php" class="li_log">connexion</a></li>
+</ul>
+    <nav role="navigation">
+      <div id="menuToggle">
+
+        <input type="checkbox" />
+
+        <span></span>
+        <span></span>
+        <span></span>
+
+        <ul id="menu">
+          <a href="#">
+            <li>Accueil</li>
+          </a>
+          <a href="#">
+            <li>Inscription</li>
+          </a>
+          <a href="#">
+            <li>Info</li>
+          </a>
+          <a href="#">
+            <li>Contact</li>
+          </a>
+          <a href="https://erikterwan.com/" target="_blank">
+            <li>Show me more</li>
+          </a>
         </ul>
       </div>
-    </div>
-  </nav>
-  <!-- Navbar -->
+    </nav>
+  </header>
+</body>
 
-  <!-- Jumbotron -->
-  <div class="p-5 text-center bg-light">
-    <h1 class="mb-3">Heading</h1>
-    <h4 class="mb-3">Subheading</h4>
-    <a class="btn btn-primary" href="" role="button">Call to action</a>
-  </div>
-  <!-- Jumbotron -->
-</header>
+</html>
