@@ -66,11 +66,9 @@ if (isset($_SESSION['id'])) {
 </head>
 
 <body>
-<?php include ('element/header.php'); ?>
+    <?php include('element/header.php'); ?>
 
     <main class="main2">
-
-
 
         <form classe="Formulaire2" action="#" method="post">
 
@@ -86,20 +84,15 @@ if (isset($_SESSION['id'])) {
                 <input classe="input-profil" type="password" name='newmdp' placeholder="mot de passe">
                 <input classe="input-profil" type="password" name='newmdp2' placeholder="Confirmer le   mot de passe">
 
-
             </div>
 
             <div class="modifier">
                 <input id='modifier' type="submit" value="Modifier">
 
-
             </div>
         </form>
-
-
-
     </main>
-
+    <?php include('element/footer.php'); ?>
 </body>
 
 </html>

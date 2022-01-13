@@ -1,7 +1,7 @@
 <?php
 
 include_once('classes/db_register.php'); //j'appel ma class pour l'inscription
-$obj = new Register(); //Création objet
+$inscription = new Register(); //Création objet
 
 if (isset($_POST['envoi'])) {
 
@@ -9,13 +9,13 @@ if (isset($_POST['envoi'])) {
   $password = $_POST['password'];
   $conf_password = $_POST['conf_password'];
 
-  $user = $obj->Login_exist($login); //$user = vérification si le login existe déjà en bdd
+  $user = $inscription->Login_exist($login); //$user = vérification si le login existe déjà en bdd
 
   if (!$user) { //si l'utilisateurs n'éxiste pas
 
     if ($password == $conf_password) { //si le password et la confirmation du password sont idendique
 
-      $register = $obj->UserRegister($login, $password); // j'appel ma class et crée mon utilisateurs
+      $register = $inscription->UserRegister($login, $password); // j'appel ma class et crée mon utilisateurs
 
       if ($register) {
         $msg = "Inscription reussis";

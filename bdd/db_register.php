@@ -2,20 +2,15 @@
 session_start();
 include 'bdd_log.php';
 
-class Register
+class Register 
 {
     //proprietés
 
-    private $id;
+ /*    private $id;
     public $login;
     public $password;
-    protected $db;
-
-    function __construct()
-    {
-        // connexion a la bdd
-        $this->db = \Dblog::connexion_db();
-    }
+    protected $db; */
+    
 
     public function UserRegister($login, $password)
     {
@@ -25,7 +20,7 @@ class Register
         $password = password_hash($password, PASSWORD_BCRYPT);
 
         //Requete SQL
-        $register = $this->db->prepare("INSERT INTO utilisateurs (login, password) VALUES (:login, :password)");
+        $register = Database::connexion_db()->prepare("INSERT INTO utilisateurs (login, password) VALUES (:login, :password)");
 
 
         $register->bindValue(':login', $login, PDO::PARAM_STR);
@@ -42,8 +37,8 @@ class Register
         //Login déjà pris
 
         $login = $_POST['login'];
-        //$this->db appel la bdd pour la requete 
-        $result = $this->db->prepare("SELECT * FROM utilisateurs WHERE login = ?");
+        //Database::connexion_db()-> appel la bdd pour la requete 
+        $result = Database::connexion_db()->prepare("SELECT * FROM utilisateurs WHERE login = ?");
         $result->execute(array($login));
         $user_data = $result->fetch();
         if ($user_data) {

@@ -1,13 +1,8 @@
 <?php
+include('bdd/db_login.php');
 session_start();
-try {
-    $bdd = new PDO('mysql:host=localhost;dbname=reservationsalles', 'root', 'root');
-    $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
 
-    echo 'echec : ' . $e->getMessage();
-}
-
+$log = new Login();
 
 if (isset($_SESSION['id'])) {
 }
@@ -21,11 +16,14 @@ if (isset($_POST['login']) and isset($_POST['password'])) {
 
     if (!empty($_POST['login']) and !empty($_POST['password'])) {
 
-        $login = $_POST['login'];
+        /* $login = $_POST['login'];
         $password = $_POST['password'];
-        $insert = $bdd->prepare("SELECT * FROM utilisateurs where login = '$login' ");
-        $insert->execute();
-        $userinfo = $insert->fetch();
+        //$log->Connexion($login, $password);
+        $insert = Database::connexion_db()->prepare("SELECT * FROM utilisateurs where login = '$login' ");
+         $insert->execute();
+        $userinfo = $insert->fetch(); */
+        $userinfo = Login::Connexion($_POST['login']);
+        var_dump($userinfo);
 
         $_SESSION['login'] = $userinfo['login'];
         $_SESSION['id'] = $userinfo['id'];
@@ -39,8 +37,6 @@ if (isset($_POST['login']) and isset($_POST['password'])) {
         }
     }
 }
-
-
 ?>
 
 <!DOCTYPE html>
@@ -55,7 +51,7 @@ if (isset($_POST['login']) and isset($_POST['password'])) {
 </head>
 
 <body>
-<?php include ('element/header.php'); ?>
+    <?php include('element/header.php'); ?>
 
 
 
@@ -96,9 +92,8 @@ if (isset($_POST['login']) and isset($_POST['password'])) {
                 <?php } ?>
 
             </div>
+
         </form>
-
-
 
     </main>
 
@@ -109,6 +104,8 @@ if (isset($_POST['login']) and isset($_POST['password'])) {
             <h1> Bienvenue <br /> <?php echo  $userinfo['login'] ?> </h1>
         <?php } ?>
     </div>
+
+    <?php include("element/footer.php"); ?>
 </body>
 
 </html>

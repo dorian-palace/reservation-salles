@@ -1,5 +1,5 @@
 <?php
-class Dblog
+class Database
 {
     public static function connexion_db(): PDO
     {
