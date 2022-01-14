@@ -1,35 +1,22 @@
 <?php
-
-include_once('classes/db_register.php'); //j'appel ma class pour l'inscription
-$inscription = new Register(); //Création objet
+require ('bdd/user.php');
+$inscription = new User();
 
 if (isset($_POST['envoi'])) {
 
-  $login = $_POST['login'];
-  $password = $_POST['password'];
-  $conf_password = $_POST['conf_password'];
+  if (isset($_POST['login']) && isset($_POST['password']) && isset($_POST['conf_password'])) {
 
-  $user = $inscription->Login_exist($login); //$user = vérification si le login existe déjà en bdd
+    $login = $_POST['login'];
+    $password = $_POST['password'];
+    $conf_password = $_POST['conf_password'];
 
-  if (!$user) { //si l'utilisateurs n'éxiste pas
+    if ($password == $conf_password) {
 
-    if ($password == $conf_password) { //si le password et la confirmation du password sont idendique
-
-      $register = $inscription->UserRegister($login, $password); // j'appel ma class et crée mon utilisateurs
-
-      if ($register) {
-        $msg = "Inscription reussis";
-      } else {
-        $msg = "Inscription échoué";
-      }
+      $inscription->Inscription($login, $password);
     } else {
-      $msg = "password correspond pas";
+      echo 'inscription échouer';
     }
-  } else {
-    $msg = 'Login déjà pris';
   }
-} else {
-  //echo "echec";
 }
 
 ?>

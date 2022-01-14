@@ -1,8 +1,10 @@
 <?php
-include('bdd/db_login.php');
+include('bdd/login.php');
 session_start();
 
-$log = new Login();
+$login = $_POST['login'];
+$password = $_POST['password'];
+$log = new Login($login, $password);
 
 if (isset($_SESSION['id'])) {
 }
@@ -16,13 +18,7 @@ if (isset($_POST['login']) and isset($_POST['password'])) {
 
     if (!empty($_POST['login']) and !empty($_POST['password'])) {
 
-        /* $login = $_POST['login'];
-        $password = $_POST['password'];
-        //$log->Connexion($login, $password);
-        $insert = Database::connexion_db()->prepare("SELECT * FROM utilisateurs where login = '$login' ");
-         $insert->execute();
-        $userinfo = $insert->fetch(); */
-        $userinfo = Login::Connexion($_POST['login']);
+        $userinfo = Login::Connexion($_POST['login'], $_POST['password']);
         var_dump($userinfo);
 
         $_SESSION['login'] = $userinfo['login'];

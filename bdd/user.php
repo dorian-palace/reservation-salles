@@ -2,17 +2,11 @@
 session_start();
 include 'bdd_log.php';
 
-class Register 
+class User
 {
-    //proprietés
 
- /*    private $id;
-    public $login;
-    public $password;
-    protected $db; */
-    
 
-    public function UserRegister($login, $password)
+    public function Inscription($login, $password)
     {
         //inscription utilisateurs
 
@@ -43,8 +37,6 @@ class Register
         $user_data = $result->fetch();
         if ($user_data) {
             return true; // si l'utilisateurs est déjà pris return true
-        } else {
-            return false;
         }
     }
 }
