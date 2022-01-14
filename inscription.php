@@ -1,18 +1,23 @@
 <?php
-require ('bdd/user.php');
-$inscription = new User();
+require('bdd/user_inscription.php');
+$inscription = new User_inscription();
 
 if (isset($_POST['envoi'])) {
 
   if (isset($_POST['login']) && isset($_POST['password']) && isset($_POST['conf_password'])) {
 
+
     $login = $_POST['login'];
     $password = $_POST['password'];
     $conf_password = $_POST['conf_password'];
 
-    if ($password == $conf_password) {
+    if ($inscription->Login_exist($login)) {
 
-      $inscription->Inscription($login, $password);
+
+      if ($password == $conf_password) {
+
+        $inscription->Inscription($login, $password);
+      }
     } else {
       echo 'inscription échouer';
     }

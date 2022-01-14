@@ -1,12 +1,8 @@
 <?php
+require('bdd/user.php');
 session_start();
-try {
-    $bdd = new PDO('mysql:host=localhost;dbname=reservationsalles', 'root', 'root');
-    $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
 
-    echo 'echec : ' . $e->getMessage();
-}
+$user = new User();
 
 if (!isset($_SESSION['id'])) {
 
@@ -15,41 +11,32 @@ if (!isset($_SESSION['id'])) {
 }
 
 if (isset($_SESSION['id'])) {
+    $user->Profil_login();
 
 
-
-    $insert = $bdd->prepare("SELECT * FROM utilisateurs where id = ? ");
-    $insert->execute(array($_SESSION['id']));
-    $insert->execute();
-    $userinfo = $insert->fetch();
-
-    if (isset($_POST['newlogin']) and !empty($_POST['newlogin'] and $_POST['newlogin'] != $userinfo['login'])) {
-
-        $newlogin = htmlspecialchars((trim($_POST['newlogin'])));
-
-        $inserlogin = $bdd->prepare("UPDATE utilisateurs SET login = ?  WHERE id = ?");
-        $inserlogin->execute(array($newlogin, $_SESSION['id']));
-
-        $msg = 'Nom d\'utilisateur modifié';
+    if (isset($_POST['newlogin']) and $_POST['newlogin'] != $user->login) {
+        $login = $_POST['newlogin'];
+        $user->Profil_update($login);
     }
 
 
     if (isset($_POST['newmdp ']) and !empty('newmdp') and isset($_POST['newmdp2']) and !empty($_POST['newmdp'])) {
+        $user->Password_update($password, $conf_password);
+        //     $newmdp = $_POST['newmdp'];
+        //     $newmdp2 = $_POST['newmdp2'];
+        //     $newmdp = password_hash($newmdp, PASSWORD_BCRYPT);
+        //     $newmdp2 = password_hash($newmdp2, PASSWORD_BCRYPT);
 
-        $newmdp = $_POST['newmdp'];
-        $newmdp2 = $_POST['newmdp2'];
-        $newmdp = password_hash($newmdp, PASSWORD_BCRYPT);
-        $newmdp2 = password_hash($newmdp2, PASSWORD_BCRYPT);
+        //     if ($newmdp == $newmpd2) {
 
-        if ($newmdp == $newmpd2) {
+        //         $insertmdp = $bdd->prepare('UPDATE utilisateur SET password=? WHERE id=?');
+        //         $insertmdp->execute(array($newmdp, $_SESSION['id']));
 
-            $insertmdp = $bdd->prepare('UPDATE utilisateur SET password=? WHERE id=?');
-            $insertmdp->execute(array($newmdp, $_SESSION['id']));
-
-            $msg = 'Mot de passe modifié';
-        }
-    } else {
-        $msh = 'Mot de passe incorrect';
+        //         $msg = 'Mot de passe modifié';
+        //     }
+        // } else {
+        //     $msh = 'Mot de passe incorrect';
+        // }
     }
 }
 ?>
@@ -67,7 +54,7 @@ if (isset($_SESSION['id'])) {
 
 <body>
     <?php include('element/header.php'); ?>
-
+    <pre><?php var_dump($_SESSION); ?></pre>
     <main class="main2">
 
         <form classe="Formulaire2" action="#" method="post">

@@ -1,5 +1,5 @@
 <?php
-include('bdd/login.php');
+require('bdd/login.php');
 session_start();
 
 $login = $_POST['login'];

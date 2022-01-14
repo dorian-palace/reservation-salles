@@ -1,5 +1,5 @@
 <?php
-include('bdd_log.php');
+require('bdd_log.php');
 
 class Login
 {
