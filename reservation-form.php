@@ -1,21 +1,22 @@
 <?php
-require 'bdd/bdd_log.php';
-require 'bdd/requete.php';
-//$req_from = new Form_resa();
+session_start();
+require 'app/resa_form.php';
+$resa_form = new Form_reservation($id, $titre, $description, $debut, $fin);
+var_dump($resa_form);
+if (isset($_POST['envoi'])) {
 
-if (isset($_POST['envoi_resa'])) {
-    if (isset($_POST['titre_resa']) && isset($_POST['description_resa']) && isset($_POST['debut_resa']) && isset($_POST['fin_resa'])) {
-        $id = $_SESSION['id'];
-        $titre = $_POST['titre'];
-        $description = $_POST['description'];
-        $debut = $_POST['date_de_debut'];
-        $fin = $_POST['date_de_fin'];
+    if (isset($_POST['titre']) && isset($_POST['description']) && isset($_POST['debut']) && isset($_POST['fin'])) {
+       
+        
 
-        $req->Reservation_form($id, $titre, $description, $debut, $fin);
+
+
+     
+        $resa_form->reserve($id, $titre, $description, $debut, $fin);
+
     }
 }
 ?>
-<pre><?php var_dump($req); ?></pre>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -31,11 +32,11 @@ if (isset($_POST['envoi_resa'])) {
     <?php include('element/header.php'); ?>
     <main><br /><br /><br /><br /><br />Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione earum quisquam suscipit nesciunt mollitia doloribus ducimus modi unde eaque aut sint ipsam a at sunt, rerum voluptatibus incidunt ad consectetur.</main>
     <form action="#" method="post" id="form_reservation">
-        <input type="text" placeholder="titre" id="titre_resa"><br /><br />
-        <input type="text" placeholder="description" id="description_resa"><br /><br />
-        <input type="date" placeholder="date_de_debut" id="debut_resa"><br /><br />
-        <input type="date" placeholder="date_de_fin" id="fin_resa"><br /><br />
-        <input type="submit" id="envoi_resa">
+        <input type="text" placeholder="titre"  name="titre"><br /><br />
+        <input type="text" placeholder="description" name="description"><br /><br />
+        <input type="date" placeholder="date_de_debut" name="debut"><br /><br />
+        <input type="date" placeholder="date_de_fin" name="fin"><br /><br />
+        <input type="submit" name="submit">
     </form>
 </body>
 

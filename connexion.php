@@ -1,10 +1,7 @@
 <?php
-require('bdd/login.php');
+require_once('bdd/login.php');
+require_once('bdd/user.php');
 session_start();
-
-$login = $_POST['login'];
-$password = $_POST['password'];
-$log = new Login($login, $password);
 
 if (isset($_SESSION['id'])) {
 }
@@ -13,13 +10,15 @@ if (isset($_POST['deco'])) {
     include('element/deconnexion.php');
 }
 
-
 if (isset($_POST['login']) and isset($_POST['password'])) {
 
     if (!empty($_POST['login']) and !empty($_POST['password'])) {
+        
+        $login = $_POST['login'];
+        $password = $_POST['password'];
+        $log = new Login($login, $password);
 
         $userinfo = Login::Connexion($_POST['login'], $_POST['password']);
-        var_dump($userinfo);
 
         $_SESSION['login'] = $userinfo['login'];
         $_SESSION['id'] = $userinfo['id'];

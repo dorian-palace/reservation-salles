@@ -1,5 +1,5 @@
 <?php
-require('bdd/user.php');
+require_once('bdd/user.php');
 session_start();
 
 $user = new User();
@@ -11,32 +11,23 @@ if (!isset($_SESSION['id'])) {
 }
 
 if (isset($_SESSION['id'])) {
-    $user->Profil_login();
-
 
     if (isset($_POST['newlogin']) and $_POST['newlogin'] != $user->login) {
         $login = $_POST['newlogin'];
         $user->Profil_update($login);
     }
 
+    if (isset($_POST['newmdp']) and isset($_POST['newmdp2'])) {
 
-    if (isset($_POST['newmdp ']) and !empty('newmdp') and isset($_POST['newmdp2']) and !empty($_POST['newmdp'])) {
-        $user->Password_update($password, $conf_password);
-        //     $newmdp = $_POST['newmdp'];
-        //     $newmdp2 = $_POST['newmdp2'];
-        //     $newmdp = password_hash($newmdp, PASSWORD_BCRYPT);
-        //     $newmdp2 = password_hash($newmdp2, PASSWORD_BCRYPT);
-
-        //     if ($newmdp == $newmpd2) {
-
-        //         $insertmdp = $bdd->prepare('UPDATE utilisateur SET password=? WHERE id=?');
-        //         $insertmdp->execute(array($newmdp, $_SESSION['id']));
-
-        //         $msg = 'Mot de passe modifié';
-        //     }
-        // } else {
-        //     $msh = 'Mot de passe incorrect';
-        // }
+        $id = $_SESSION['id'];
+        $password = $_POST['newmdp'];
+        $conf_password = $_POST['newmdp2'];
+        if ($password == $conf_password) {
+            $user->Password_update($id, $password);
+        }
+        else {
+            $msg = 'Mot de passe incorrect';
+         }
     }
 }
 ?>
@@ -54,8 +45,8 @@ if (isset($_SESSION['id'])) {
 
 <body>
     <?php include('element/header.php'); ?>
-    <pre><?php var_dump($_SESSION); ?></pre>
     <main class="main2">
+        <a href=""></a>
 
         <form classe="Formulaire2" action="#" method="post">
 
@@ -67,7 +58,7 @@ if (isset($_SESSION['id'])) {
 
             <div class="input">
 
-                <input type="text" name="newlogin" placeholder="nom d'utilisateur" value="<?php echo $userinfo['login'] ?>">
+                <input type="text" name="newlogin" placeholder="nom d'utilisateur" value="<?= $user->login; ?>">
                 <input classe="input-profil" type="password" name='newmdp' placeholder="mot de passe">
                 <input classe="input-profil" type="password" name='newmdp2' placeholder="Confirmer le   mot de passe">
 

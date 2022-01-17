@@ -5,14 +5,13 @@
    padding: 0;
    
    /* make it look decent enough */
-   background: #232323;
-   color: #cdcdcd;
    font-family: "Avenir Next", "Avenir", sans-serif;
  }
  
  #menuToggle
  {
    display: block;
+   justify-content: end;
    position: relative;
    top: 50px;
    left: 50px;

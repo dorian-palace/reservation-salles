@@ -1,5 +1,5 @@
 <?php
-require('bdd_log.php');
+require_once('bdd_log.php');
 
 class Login
 {
@@ -9,6 +9,7 @@ class Login
 
     function __construct($login, $password)
     {
+        $this->bdd = Database::connexion_db();
         $this->login = $login;
         $this->password = $password;
     }
