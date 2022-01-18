@@ -14,6 +14,8 @@ if (isset($_POST['submit'])) {
 
         $resa_form = new Form_reservation($id,  $titre, $description, $debut, $fin);
 
+        $resa_form->envent_exist($debut,$fin);
+
         $resa_form->reserve();
     }
 }

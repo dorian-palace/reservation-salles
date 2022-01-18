@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,9 +8,13 @@
     <link rel="stylesheet" href="style.css">
     <title>planning</title>
 </head>
-<body>
-<?php include ('element/header.php'); ?>
 
-    
+<body>
+    <?php include('element/header.php'); ?>
+    <main>
+        <h1 align="center">Planning</h1>
+    </main>
+
 </body>
+
 </html>

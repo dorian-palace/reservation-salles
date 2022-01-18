@@ -15,11 +15,24 @@ class Form_reservation
     {
         $this->bdd = Database::connexion_db();
         $this->id = $id;
-        // $this->id_utilisateur = $id_utilisateur;
         $this->titre = $titre;
         $this->description = $description;
         $this->debut = $debut;
         $this->fin = $fin;
+    }
+
+    public function envent_exist($debut, $fin)
+    {
+        $req = $this->bdd->prepare("SELECT * FROM reservations WHERE debut = ? fin = ? ");
+        $req->execute(array($debut, $fin));
+        $this->debut = $debut;
+        $this->fin = $fin;
+        $result = $req->rowCount();
+        if ($result == 1) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     public function reserve()
