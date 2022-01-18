@@ -1,7 +1,6 @@
 <?php
 require_once('bdd/user.php');
 session_start();
-
 $user = new User();
 
 if (!isset($_SESSION['id'])) {
