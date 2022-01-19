@@ -4,6 +4,7 @@ class Month
 {
 
     public $bdd;
+    public $days = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
     private $months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
     private $month;
     private $year;
@@ -22,6 +23,12 @@ class Month
         $this->year = $year;
     }
 
+    //renvoi le premier jour du mois
+    public function getStartingDay(): \DateTime {
+        return new \DateTime("{$this->year}-{$this->month}-01");
+
+    }
+
 
     //Retourne le mois en string exe 07 = Juillet 
     public function toString(): string
@@ -31,9 +38,9 @@ class Month
 
     public function getWeeks(): int
     {
-        $start = new \DateTime("{$this->year}-{$this->month}-01");
+        $start = $this->getStartingDay();
         $end = (clone $start)->modify('+1 month -1 day');
-        $weeks = intval($end->format('W')) - intval($start->format(('W')));
+        $weeks = intval($end->format('W')) - intval($start->format(('W'))) +1;
         if ($weeks < 0) {
             $weeks = intval($end->format('W'));
         }
