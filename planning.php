@@ -1,3 +1,14 @@
+<?php
+session_start();
+require('app/month.php');
+
+
+$month = new Month($_GET['month'] ?? null, $_GET['year'] ?? null);
+// ?? null Si c'est définit ça prend la valeur de $_GET sinon ça prend la valeur null
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,6 +24,14 @@
     <?php include('element/header.php'); ?>
     <main>
         <h1 align="center">Planning</h1>
+        <h1><?= $month->toString(); ?></h1>
+
+        <?= $month->getWeeks(); 
+        ?>
+
+        <table>
+
+        </table>
     </main>
 
 </body>
