@@ -1,6 +1,7 @@
 <?php
 session_start();
 require('app/month.php');
+require('app/event.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,12 +17,17 @@ require('app/month.php');
 
 <body>
     <?php
+    $event = new Event();
     $month = new Month($_GET['month'] ?? null, $_GET['year'] ?? null);
     // ?? null Si c'est définit ça prend la valeur de $_GET sinon ça prend la valeur null
-    $start = $month->getStartingDay()->modify('last monday');
-    // include('element/header.php'); 
+    $start = $month->getStartingDay();
+    $start = $start->format('N') === '1' ? $start : $month->getStartingDay()->modify('last monday');
+    //Si ce jour est = a 1 dans ce cas on renvoi directement la date de demarage dans le cas contraire j'ai besoin de la date du dernier lundi
+    $weeks = $month->getWeeks();
+    $end = (clone $start)->modify('+' . (6 + 7 * ($weeks - 1)) .'days');
+    $event = $event->getEventBetweenbyDay($start, $end);
     ?>
-    
+
     <div class="d-flex flex-row align-items-center justify-content-between mx-sm-3">
         <h1><?= $month->toString(); ?></h1>
         <div>
@@ -32,9 +38,11 @@ require('app/month.php');
         </div>
     </div>
 
-    <table class="calendar__table calendar__table--<?= $month->getWeeks(); ?>weeks">
-        <?php for ($i = 0; $i < $month->getWeeks(); $i++) : ?>
+    <table class="calendar__table calendar__table--<?= $weeks; ?>weeks">
+
+        <?php for ($i = 0; $i < $weeks; $i++) : ?>
             <tr>
+                
                 <?php
                 foreach ($month->days as $k => $day) :
                     $date = (clone $start)->modify("+" . ($k + $i * 7) . "days")

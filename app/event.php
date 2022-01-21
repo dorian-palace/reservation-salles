@@ -2,28 +2,35 @@
 require_once('bdd/bdd_log.php');
 
 class Event{
-    public $id;
-    public $bdd;
-    public $login;
-    public $titre;
-    public $description;
-    public $debut;
-    public $fin;
+    private $bdd;
 
-
-    public function __construct($id, $login, $titre, $description, $debut, $fin)
+    public function __construct()
     {
         $this->bdd = Database::connexion_db();
-        $this->id = $id;
-        $this->login = $login;
-        $this->titre = $titre;
-        $this->description = $description;
-        $this->debut = $debut;
-        $this->fin = $fin;
     }
 
-    public function user_event(){
 
-        $res = $this->bdd->prepare("SELECT * FROM reservations");
+    public function getEventBetween(DateTime $start, DateTime $end): array{
+
+        $req = $this->bdd->prepare("SELECT * from reservations INNER JOIN utilisateurs ON reservations.id_utilisateur = utilisateurs.id WHERE debut BETWEEN '{$start->format('Y-m-d 00:00:00')}' AND '{$end->format('Y-m-d 23:59:59')}'");
+        $req->execute();
+        $results = $req->fetchAll();
+        return $results;
+    }
+
+    public function getEventBetweenByDay(DateTime $start, DateTime $end): array{
+
+       $event = $this->getEventBetween($start, $end);
+       $days = [];
+       foreach($event as $events){
+           $date = explode( ' ', $events['start'])[0];
+           if(!isset($days[$date])){ 
+               $days[$date] = [$events];
+           }else {
+               $days[$date][] = $events;
+           }
+       }
+       var_dump($days);
+       return $days;
     }
 }

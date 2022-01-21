@@ -37,8 +37,8 @@ if (isset($_POST['submit'])) {
     <form action="#" method="post" id="form_reservation">
         <input type="text" placeholder="titre" name="titre"><br /><br />
         <input type="text" placeholder="description" name="description"><br /><br />
-        <input type="date" placeholder="date_de_debut" name="debut"><br /><br />
-        <input type="date" placeholder="date_de_fin" name="fin"><br /><br />
+        <input type="datetime-local" placeholder="date_de_debut" name="debut"><br /><br />
+        <input type="datetime-local" placeholder="date_de_fin" name="fin"><br /><br />
         <input type="submit" name="submit">
     </form>
 </body>
