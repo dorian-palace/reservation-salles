@@ -23,14 +23,13 @@ class Event{
        $event = $this->getEventBetween($start, $end);
        $days = [];
        foreach($event as $events){
-           $date = explode( ' ', $events['start'])[0];
+           $date = explode( ' ', $events['debut'])[0];
            if(!isset($days[$date])){ 
                $days[$date] = [$events];
            }else {
                $days[$date][] = $events;
            }
        }
-       var_dump($days);
        return $days;
     }
 }

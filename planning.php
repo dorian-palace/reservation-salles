@@ -22,10 +22,12 @@ require('app/event.php');
     // ?? null Si c'est définit ça prend la valeur de $_GET sinon ça prend la valeur null
     $start = $month->getStartingDay();
     $start = $start->format('N') === '1' ? $start : $month->getStartingDay()->modify('last monday');
+
     //Si ce jour est = a 1 dans ce cas on renvoi directement la date de demarage dans le cas contraire j'ai besoin de la date du dernier lundi
     $weeks = $month->getWeeks();
-    $end = (clone $start)->modify('+' . (6 + 7 * ($weeks - 1)) .'days');
+    $end = (clone $start)->modify('+' . (6 + 7 * ($weeks - 1)) . 'days');
     $event = $event->getEventBetweenbyDay($start, $end);
+
     ?>
 
     <div class="d-flex flex-row align-items-center justify-content-between mx-sm-3">
@@ -42,10 +44,11 @@ require('app/event.php');
 
         <?php for ($i = 0; $i < $weeks; $i++) : ?>
             <tr>
-                
+
                 <?php
                 foreach ($month->days as $k => $day) :
-                    $date = (clone $start)->modify("+" . ($k + $i * 7) . "days")
+                    $date = (clone $start)->modify("+" . ($k + $i * 7) . "days");
+                    $eventForday = $event[$date->format('Y-m-d')] ?? [];
                 ?>
                     <td class="<?= $month->withinMonth($date) ? '' : 'calendar__othermonth'
                                 //; 
@@ -53,6 +56,12 @@ require('app/event.php');
                         <?php if ($i === 0) : ?> <div class="calendar__weekday"><?= $day ?></div>
                         <?php endif; ?>
                         <div class="calendar__day"><?= $date->format('d'); ?></div>
+                        <?php foreach ($eventForday as $event) : ?>
+                            <div class="calendar__event">
+                                <?= (new DateTime($event['debut']))->format('H:i') ?> - <a href="/reservation.php?id=<?= $event['id']; ?>"><?= $event['titre']; ?></a>
+                        </div>
+                        <?php endforeach; ?>
+
                     </td>
                 <?php endforeach; ?>
             </tr>
