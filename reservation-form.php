@@ -19,6 +19,7 @@ if (isset($_POST['submit'])) {
         $resa_form->reserve();
     }
 }
+//TIMESTAMP
 ?>
 
 <!DOCTYPE html>

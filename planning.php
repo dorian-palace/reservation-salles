@@ -28,6 +28,7 @@ require('app/events.php');
     $end = (clone $start)->modify('+' . (6 + 7 * ($weeks - 1)) . 'days');
     $events = $events->getEventBetweenbyDay($start, $end);
 
+
     ?>
 
     <div class="d-flex flex-row align-items-center justify-content-between mx-sm-3">
@@ -59,14 +60,13 @@ require('app/events.php');
                         <?php foreach ($eventForday as $events) : ?>
                             <div class="calendar__event">
                                 <?= (new DateTime($events['debut']))->format('H:i') ?> - <a href="reservation.php/?id=<?= $events['id']; ?>"><?= $events['titre']; ?></a>
-                        </div>
+                            </div>
                         <?php endforeach; ?>
                     </td>
                 <?php endforeach; ?>
             </tr>
         <?php endfor; ?>
     </table>
-<pre><?php var_dump($end); ?></pre>
 </body>
 
 </html>

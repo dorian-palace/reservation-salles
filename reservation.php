@@ -2,13 +2,15 @@
 session_start();
 require('app/events.php');
 require('parametre/setting.php');
-// if (!isset($_SESSION['id'])) {
-//     header('Location: connexion.php');
-// }
+
+
 $events = new Events();
-$res = $events->getUser_event(); 
+$res = $events->getUser_event();
 if (!isset($_GET['id'])) {
     e404();
+}
+if (!isset($_SESSION['id'])) {
+    header('Location: ../connexion.php');
 }
 try {
 
