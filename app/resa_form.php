@@ -3,46 +3,34 @@ require_once('bdd/bdd_log.php');
 
 class Form_reservation
 {
-    public $id;
-    public $id_utilisateur;
-    public $titre;
-    public $description;
-    public $debut;
-    public $fin;
-    public $bdd;
 
-    public function __construct($id, $titre, $description, $debut, $fin)
+    public function __construct( $titre, $description, $debut, $fin, $id)
     {
         $this->bdd = Database::connexion_db();
-        $this->id = $id;
-        $this->titre = $titre;
-        $this->description = $description;
-        $this->debut = $debut;
-        $this->fin = $fin;
+       
     }
 
-    public function envent_exist($debut, $fin)
+    public function envent_exist($debut)
     {
-        $req = $this->bdd->prepare("SELECT * FROM reservations WHERE debut = ? fin = ? ");
-        $req->execute(array($debut, $fin));
-        $this->debut = $debut;
-        $this->fin = $fin;
+        $req = $this->bdd->prepare("SELECT debut FROM reservations where debut = ? ");
+        $req->execute(array($debut));
         $result = $req->rowCount();
-        if ($result == 1) {
-            return false;
-        } else {
+        if ($result == 0) {
             return true;
+        } else {
+            return false;
         }
+
     }
 
-    public function reserve()
+    public function reserve($titre, $description, $debut, $fin, $id_utilisateur)
     {
         $req = $this->bdd->prepare("INSERT INTO reservations (titre, description, debut, fin, id_utilisateur) VALUES (:titre, :description, :debut, :fin, :id_utilisateur)");
-        $req->bindValue(':titre', $this->titre);
-        $req->bindValue(':description', $this->description);
-        $req->bindValue(':debut', $this->debut);
-        $req->bindValue(':fin', $this->fin);
-        $req->bindValue(':id_utilisateur', $this->id);
+        $req->bindValue(':titre', $titre);
+        $req->bindValue(':description', $description);
+        $req->bindValue(':debut', $debut);
+        $req->bindValue(':fin', $fin);
+        $req->bindValue(':id_utilisateur', $id_utilisateur);
         $req->execute();
         return $req;
     }

@@ -2,24 +2,39 @@
 session_start();
 require 'app/resa_form.php';
 
-if (isset($_POST['submit'])) {
+$debut = (new DateTime($_POST['debut']))->format('Y-m-d H:i:s');
+$fin = (new DateTime($_POST['fin']))->format('Y-m-d H:i:s');
+$debut_int = intval((new DateTime($_POST['debut']))->format('H'));
+$fin_int = intval((new DateTime($_POST['fin']))->format('H'));
+$day = intval((new DateTime($_POST['debut']))->format('w'));
 
-    if (isset($_POST['titre']) && isset($_POST['description']) && isset($_POST['debut']) && isset($_POST['fin'])) {
+// varible fin = a variable debut +1
+if ($debut_int >= 8 && $fin_int <= 19) {
+    if ($day <= 5) {
+        if (isset($_POST['submit'])) {
 
-        $titre = $_POST['titre'];
-        $description = $_POST['description'];
-        $debut = $_POST['debut'];
-        $fin = $_POST['fin'];
-        $id = $_SESSION['id'];
+            if (isset($_POST['titre']) && isset($_POST['description']) && isset($_POST['debut']) && isset($_POST['fin'])) {
 
-        $resa_form = new Form_reservation($id,  $titre, $description, $debut, $fin);
+                $titre = $_POST['titre'];
+                $description = $_POST['description'];
+                $id_utilisateur = $_SESSION['id'];
+                $resa = new Form_reservation($titre, $description, $debut, $fin, $id_utilisateur);
 
-        $resa_form->envent_exist($debut,$fin);
+                if ($resa->envent_exist($debut)) {
 
-        $resa_form->reserve();
+                    $resa->reserve($titre, $description, $debut, $fin, $id_utilisateur);
+                } else {
+                    echo 'non dispo';
+                }
+            }
+        }
+    } else {
+        echo 'nous sommes fermer';
     }
+} else {
+    echo 'ta grand mere';
 }
-//TIMESTAMP
+
 ?>
 
 <!DOCTYPE html>

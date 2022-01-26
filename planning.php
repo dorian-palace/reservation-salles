@@ -67,6 +67,7 @@ require('app/events.php');
             </tr>
         <?php endfor; ?>
     </table>
+    <pre><?php var_dump($events); ?></pre>
 </body>
 
 </html>
