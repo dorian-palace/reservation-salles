@@ -17,7 +17,7 @@ if (isset($_POST['envoi'])) {
         $inscription->Inscription($login, $password);
       }
     } else {
-      echo 'inscription échouer';
+      $msg = 'inscription échouer';
     }
   }
 }
@@ -37,6 +37,9 @@ if (isset($_POST['envoi'])) {
 
   <div class="form_inscription">
     <form action="" method="post">
+      <?php if (isset($msg)) {
+        echo $msg;
+      } ?>
       <input type="text" name="login" placeholder="login"><br /><br />
       <input type="password" name="password" placeholder="password"><br /><br />
       <input type="password" name="conf_password" placeholder="password"><br /><br />

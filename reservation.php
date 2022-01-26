@@ -3,7 +3,6 @@ session_start();
 require('app/events.php');
 require('parametre/setting.php');
 
-
 $events = new Events();
 $res = $events->getUser_event();
 if (!isset($_GET['id'])) {

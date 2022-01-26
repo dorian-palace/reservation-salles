@@ -23,10 +23,10 @@ if (isset($_SESSION['id'])) {
         $conf_password = $_POST['newmdp2'];
         if ($password == $conf_password) {
             $user->Password_update($id, $password);
-        }
-        else {
+            $msg = 'Modification réussi';
+        } else {
             $msg = 'Mot de passe incorrect';
-         }
+        }
     }
 }
 ?>
@@ -45,7 +45,6 @@ if (isset($_SESSION['id'])) {
 <body>
     <?php include('element/header.php'); ?>
     <main class="main2">
-        <a href=""></a>
 
         <form classe="Formulaire2" action="#" method="post">
 
