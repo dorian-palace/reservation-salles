@@ -20,10 +20,7 @@ require('app/events.php');
     $events = new Events();
     $month = new Month($_GET['month'] ?? null, $_GET['year'] ?? null);
     // ?? null Si c'est définit ça prend la valeur de $_GET sinon ça prend la valeur null
-    $start = $month->getStartingDay();
-    $start = $start->format('N') === '1' ? $start : $month->getStartingDay()->modify('last monday');
-
-    //Si ce jour est = a 1 dans ce cas on renvoi directement la date de demarage dans le cas contraire j'ai besoin de la date du dernier lundi
+    $start = $month->getStartingDay()->modify('last monday');
     $weeks = $month->getWeeks();
     $end = (clone $start)->modify('+' . (6 + 7 * ($weeks - 1)) . 'days');
     $events = $events->getEventBetweenbyDay($start, $end);
@@ -57,9 +54,9 @@ require('app/events.php');
                         <?php if ($i === 0) : ?> <div class="calendar__weekday"><?= $day ?></div>
                         <?php endif; ?>
                         <div class="calendar__day"><?= $date->format('d'); ?></div>
-                        <?php foreach ($eventForday as $events) : ?>
+                        <?php foreach ($eventForday as $event) : ?>
                             <div class="calendar__event">
-                                <?= (new DateTime($events['debut']))->format('H:i') ?> - <a href="reservation.php/?id=<?= $events['id']; ?>"><?= $events['titre']; ?></a>
+                                <?= (new DateTime($event['debut']))->format('H:i') ?> - <a href="reservation.php/?id=<?= $event['id']; ?>"><?= $event['titre']; ?></a>
                             </div>
                         <?php endforeach; ?>
                     </td>
@@ -67,7 +64,6 @@ require('app/events.php');
             </tr>
         <?php endfor; ?>
     </table>
-    <pre><?php var_dump($events); ?></pre>
 </body>
 
 </html>
