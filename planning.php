@@ -2,6 +2,7 @@
 session_start();
 require('app/month.php');
 require('app/events.php');
+require('element/header.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">

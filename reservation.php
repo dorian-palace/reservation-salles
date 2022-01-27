@@ -2,6 +2,7 @@
 session_start();
 require('app/events.php');
 require('parametre/setting.php');
+require('element/header.php');
 
 $events = new Events();
 $res = $events->getUser_event();
@@ -31,7 +32,6 @@ try {
 </head>
 
 <body>
-    <?php include('element/header.php'); ?>
     <h1><?= $event['titre']; ?></h1>
 
     <ul>

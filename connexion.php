@@ -1,6 +1,8 @@
 <?php
 require_once('bdd/login.php');
 require_once('bdd/user.php');
+require('element/header.php');
+
 session_start();
 
 if (isset($_SESSION['id'])) {
@@ -41,12 +43,11 @@ if (isset($_POST['login']) and isset($_POST['password'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <title>Connexion</title>
 </head>
 
 <body>
-    <?php include('element/header.php'); ?>
 
 
 
@@ -73,7 +74,7 @@ if (isset($_POST['login']) and isset($_POST['password'])) {
             <p class="inscription">
                 Je n'ai pas de compte. J'en <a href="inscription.php">céer un</a>
             </p>
-            <div align="center">
+            <div class="connexion_log" >
 
                 <?php if (!isset($_SESSION['id'])) { ?>
 

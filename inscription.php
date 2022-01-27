@@ -1,5 +1,7 @@
 <?php
 require('bdd/user.php');
+require('element/header.php');
+
 $inscription = new User();
 
 if (isset($_POST['envoi'])) {
@@ -33,7 +35,6 @@ if (isset($_POST['envoi'])) {
 </head>
 
 <body>
-  <?php include('element/header.php'); ?>
 
   <div class="form_inscription">
     <form action="" method="post">

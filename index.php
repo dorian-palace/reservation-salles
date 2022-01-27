@@ -1,4 +1,5 @@
 <?php
+require('element/header.php');
 
 ?>
 <!DOCTYPE html>
@@ -11,7 +12,6 @@
     <title>Accueil</title>
 </head>
 <body>
-   <?php include ('element/header.php'); ?>
    <h1 id="home">Home</h1>
 
 </body>

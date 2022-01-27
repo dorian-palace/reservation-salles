@@ -1,6 +1,7 @@
 <?php
 session_start();
 require 'app/resa_form.php';
+require('element/header.php');
 
 if (isset($_POST['titre']) && isset($_POST['description']) && isset($_POST['debut']) && isset($_POST['fin'])) {
 
@@ -61,7 +62,6 @@ if (isset($_POST['titre']) && isset($_POST['description']) && isset($_POST['debu
 </head>
 
 <body>
-    <?php include('element/header.php'); ?>
 
     <form action="#" method="post" id="form_reservation">
         <?php if (isset($msg)) {

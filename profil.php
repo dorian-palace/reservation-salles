@@ -1,5 +1,7 @@
 <?php
 require_once('bdd/user.php');
+require('element/header.php');
+
 session_start();
 $user = new User();
 
@@ -43,7 +45,6 @@ if (isset($_SESSION['id'])) {
 </head>
 
 <body>
-    <?php include('element/header.php'); ?>
     <main class="main2">
 
         <form classe="Formulaire2" action="#" method="post">

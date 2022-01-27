@@ -1,48 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+    <link rel="stylesheet" href="style.css">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/hamburger.css">
-  <title>Document</title>
+    <style>
+        ul {
+            list-style-type: none;
+
+            margin: -0.5%;
+            padding: 10px;
+            margin-top: -0.5%;
+            overflow: hidden;
+            background-color: red;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: black;
+            text-align: center;
+            padding: 10px;
+            text-decoration: none;
+        }
+
+        li a:hover:not(.active) {
+            background-color: pink;
+        }
+
+        .active {
+            background-color: pink;
+        }
+    </style>
 </head>
 
 <body>
-  <header>
-    <ul class="ul_log">
-      <li><a href="connexion.php" class="li_log">connexion</a></li>
+
+    <ul class="ul_header">
+        <li><a href="index.php">Accueil</a></li>
+
+
+        <li><a href="profil.php">Profil</a></li>
+        <li><a href="reservation-form.php">Réservation</a></li>
+        <li><a href="planning.php">Planning</a></li>
+        <li><a href="inscription.php">Inscription</a></li>
+        <li style="float:right"><a class="active" href="connexion.php">Connexion</a></li>
     </ul>
-    <nav role="navigation">
-      <div id="menuToggle">
 
-        <input type="checkbox" />
 
-        <span></span>
-        <span></span>
-        <span></span>
 
-        <ul id="menu">
-          <a href="#">
-            <li>Accueil</li>
-          </a>
-          <a href="#">
-            <li>Inscription</li>
-          </a>
-          <a href="#">
-            <li>Info</li>
-          </a>
-          <a href="#">
-            <li>Contact</li>
-          </a>
-          <a href="https://erikterwan.com/" target="_blank">
-            <li>Show me more</li>
-          </a>
-        </ul>
-      </div>
-    </nav>
-  </header>
 </body>
 
 </html>
