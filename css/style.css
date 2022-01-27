@@ -1,7 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,100&display=swap');
+*{
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    font-size: 1em;
+    color: red;
 
-     
+}
+form{
+    display: flex;
+    padding: 5%;
+    margin: auto;
+    margin-top: 5%;
+    width: 20%;
+    background-color: gray;
+    flex-direction: column;
+    justify-content:center;
+}
+
+
+
 .main2{
     display: flex;
     justify-content: center;
     margin: auto;
 }
+
+.container_pic{
+    
+        background-color: #000000;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2)), url(../image/5472.jpeg);
+        background-size: cover;
+        color: #ffffff;
+        padding: 5%;
+        margin-top: 0.5%;
+        text-align: center;
+    }

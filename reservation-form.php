@@ -6,6 +6,7 @@ require('element/header.php');
 if (isset($_POST['titre']) && isset($_POST['description']) && isset($_POST['debut']) && isset($_POST['fin'])) {
 
     $now = new DateTime();
+    $hnow = $now->format('Y-m-d H:i:s');
     $debut = (new DateTime($_POST['debut']))->format('Y-m-d H:i:s');
     $fin = (new DateTime($_POST['fin']))->format('Y-m-d H:i:s');
     $debut_int = intval((new DateTime($_POST['debut']))->format('H'));
@@ -17,7 +18,7 @@ if (isset($_POST['titre']) && isset($_POST['description']) && isset($_POST['debu
 
         if ($heure == 1) {
 
-            if ($debut >= $now) {
+            if ($debut >= $hnow) {
 
                 if ($day <= 5) {
 
@@ -31,6 +32,7 @@ if (isset($_POST['titre']) && isset($_POST['description']) && isset($_POST['debu
                         if ($resa->envent_exist($debut)) {
 
                             $resa->reserve($titre, $description, $debut, $fin, $id_utilisateur);
+                            $msg = 'Réservation ';
                         } else {
                             $msg = 'La date de reservation n\'est pas disponnible';
                         }
@@ -58,6 +60,7 @@ if (isset($_POST['titre']) && isset($_POST['description']) && isset($_POST['debu
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
     <title>reservation</title>
 </head>
 
