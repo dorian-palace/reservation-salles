@@ -1,11 +1,11 @@
 <?php
+session_start();
 require_once('bdd/login.php');
 require_once('bdd/user.php');
 require('element/header.php');
 
-session_start();
-
 if (isset($_SESSION['id'])) {
+    header('Location: index.php');
 }
 
 if (isset($_POST['deco'])) {
@@ -15,13 +15,11 @@ if (isset($_POST['deco'])) {
 if (isset($_POST['login']) and isset($_POST['password'])) {
 
     if (!empty($_POST['login']) and !empty($_POST['password'])) {
-        
+
         $login = $_POST['login'];
         $password = $_POST['password'];
         $log = new Login($login, $password);
-
         $userinfo = Login::Connexion($_POST['login'], $_POST['password']);
-
         $_SESSION['login'] = $userinfo['login'];
         $_SESSION['id'] = $userinfo['id'];
 
@@ -74,7 +72,7 @@ if (isset($_POST['login']) and isset($_POST['password'])) {
             <p class="inscription">
                 Je n'ai pas de compte. J'en <a href="inscription.php">céer un</a>
             </p>
-            <div class="connexion_log" >
+            <div class="connexion_log">
 
                 <?php if (!isset($_SESSION['id'])) { ?>
 
@@ -86,6 +84,7 @@ if (isset($_POST['login']) and isset($_POST['password'])) {
                     <input type="submit" name="deco" value="Se déconnecter" id="deco_boutton" />
 
                 <?php } ?>
+
 
             </div>
 

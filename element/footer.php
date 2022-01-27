@@ -16,13 +16,6 @@
 
 	<div class="footer-center">
 
-
-
-		<div>
-			<i class="fa fa-phone"></i>
-			<p>+1.555.555.5555</p>
-		</div>
-
 		<div>
 			<i class="fa fa-envelope"></i>
 			<p>dorian.palace@laplateforme.io</p>

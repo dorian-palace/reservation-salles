@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
 
 <head>
     <style>
@@ -20,7 +20,7 @@
 
         li a {
             display: block;
-            color: black;
+            color: white;
             text-align: center;
             padding: 10px;
             text-decoration: none;
@@ -41,12 +41,18 @@
     <ul class="ul_header">
         <li><a href="index.php">Accueil</a></li>
 
+        <?php if (!isset($_SESSION['id'])) { ?>
+          
+            <li style="float:right"><a class="active" href="connexion.php">Connexion</a></li>
+            <li><a href="inscription.php">Inscription</a></li>
 
-        <li><a href="profil.php">Profil</a></li>
-        <li><a href="reservation-form.php">Réservation</a></li>
-        <li><a href="planning.php">Planning</a></li>
-        <li><a href="inscription.php">Inscription</a></li>
-        <li style="float:right"><a class="active" href="connexion.php">Connexion</a></li>
+        <?php }  ?>
+          <?php if(isset($_SESSION['id'])){  ?>
+            <li style="float:right"><a class="active" href="element/deconnexion.php">Deconnexion</a></li>
+            <li><a href="profil.php">Profil</a></li>
+            <li><a href="reservation-form.php">Réservation</a></li>
+            <li><a href="planning.php">Planning</a></li>
+        <?php }  ?>
     </ul>
 
 

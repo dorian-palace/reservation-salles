@@ -1,8 +1,8 @@
 <?php
+session_start();
 require_once('bdd/user.php');
 require('element/header.php');
 
-session_start();
 $user = new User();
 
 if (!isset($_SESSION['id'])) {
@@ -40,7 +40,7 @@ if (isset($_SESSION['id'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <title>Modifier profil</title>
 </head>
 
