@@ -45,7 +45,7 @@ if (isset($_POST['login']) and isset($_POST['password'])) {
     <title>Connexion</title>
 </head>
 
-<body>
+<body class="body_connexion">
 
 
 
@@ -53,7 +53,13 @@ if (isset($_POST['login']) and isset($_POST['password'])) {
 
         <form class="formulaire2" action="#" method="post">
 
+            <div class="connecter">
 
+                <?php if (isset($userinfo['id'])) { ?>
+
+                    <h1> Bienvenue <?php echo  $userinfo['login'] ?> </h1>
+                <?php } ?>
+            </div>
             <h1>Se connecter</h1>
 
             <?php if (isset($msg)) {
@@ -65,8 +71,8 @@ if (isset($_POST['login']) and isset($_POST['password'])) {
             <?php } ?>
 
             <div class="input">
-                <input type="text" name="login" require placeholder="Nom d'utilisateur" />
-                <input type="password" name="password" require placeholder="Mot de passe" />
+                <input type="text" name="login" require placeholder="Nom d'utilisateur" /></br></br>
+                <input type="password" name="password" require placeholder="Mot de passe" /></br>
             </div>
 
             <p class="inscription">
@@ -79,7 +85,8 @@ if (isset($_POST['login']) and isset($_POST['password'])) {
 
                     <input type="submit" name="valider" value="Se connecter" />
 
-                <?php } else { ?>
+                <?php } else {
+                    header("refresh:2;url=reservation-form.php");                    ?>
 
                     <input type="submit" name="deco" value="Se déconnecter" id="deco_boutton" />
 
@@ -92,13 +99,7 @@ if (isset($_POST['login']) and isset($_POST['password'])) {
 
     </main>
 
-    <div class="connecter">
 
-        <?php if (isset($userinfo['id'])) { ?>
-
-            <h1> Bienvenue <br /> <?php echo  $userinfo['login'] ?> </h1>
-        <?php } ?>
-    </div>
 
     <?php include("element/footer.php"); ?>
 </body>

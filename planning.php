@@ -16,7 +16,7 @@ require('element/header.php');
     <title>planning</title>
 </head>
 
-<body>
+<body  >
     <?php
     $events = new Events();
     $month = new Month($_GET['month'] ?? null, $_GET['year'] ?? null);
@@ -57,7 +57,7 @@ require('element/header.php');
                         <div class="calendar__day"><?= $date->format('d'); ?></div>
                         <?php foreach ($eventForday as $event) : ?>
                             <div class="calendar__event">
-                                <?= (new DateTime($event['debut']))->format('H:i') ?> - <a href="reservation.php/?id=<?= $event['id']; ?>"><?= $event['titre']; ?></a>
+                                <?= (new DateTime($event['debut']))->format('H:i') ?> - <a href="reservation.php?id=<?= $event['id']; ?>"><?= $event['titre']; ?></a>
                             </div>
                         <?php endforeach; ?>
                     </td>

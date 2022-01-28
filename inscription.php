@@ -36,7 +36,7 @@ if (isset($_POST['envoi'])) {
   <title>Inscription</title>
 </head>
 
-<body>
+<body class="inscription_body">
 
   <div class="form_inscription">
     <form action="" method="post">

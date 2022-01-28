@@ -44,7 +44,7 @@ if (isset($_SESSION['id'])) {
     <title>Modifier profil</title>
 </head>
 
-<body>
+<body class="body_profil" >
     <main class="main2">
 
         <form classe="Formulaire2" action="#" method="post">
@@ -53,12 +53,12 @@ if (isset($_SESSION['id'])) {
                 echo $msg;
             } ?>
 
-            <h2 id="h2_profil"> Modification de mon profil</h2>
+            <h1 id="h2_profil"> Modification de mon profil</h1>
 
             <div class="input">
 
-                <input type="text" name="newlogin" placeholder="nom d'utilisateur" value="<?= $user->login; ?>">
-                <input classe="input-profil" type="password" name='newmdp' placeholder="mot de passe">
+                <input type="text" name="newlogin" placeholder="nom d'utilisateur" value="<?= $user->login; ?>"><br /><br />
+                <input classe="input-profil" type="password" name='newmdp' placeholder="mot de passe"><br /><br />
                 <input classe="input-profil" type="password" name='newmdp2' placeholder="Confirmer le   mot de passe">
 
             </div>

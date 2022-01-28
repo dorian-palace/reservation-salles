@@ -64,7 +64,7 @@ if (isset($_POST['titre']) && isset($_POST['description']) && isset($_POST['debu
     <title>reservation</title>
 </head>
 
-<body>
+<body class="body_form" >
 
     <form action="#" method="post" id="form_reservation">
         <?php if (isset($msg)) {
@@ -76,6 +76,7 @@ if (isset($_POST['titre']) && isset($_POST['description']) && isset($_POST['debu
         <input type="datetime-local" placeholder="date_de_fin" name="fin"><br /><br />
         <input type="submit" name="submit">
     </form>
+    <?php require('element/footer.php'); ?>
 </body>
 
 </html>

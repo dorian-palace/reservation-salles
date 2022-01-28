@@ -16,6 +16,7 @@
 }
 
 .calendar__weekday {
+  
   font-weight: bold;
   color: #000;
   font-size: 1.2em;
@@ -27,4 +28,8 @@
 
 .calendar__othermonth .calendar__day {
   opacity: 0.4;
+}
+
+body{
+  background-image: url(..image/love9.jpeg);
 }
